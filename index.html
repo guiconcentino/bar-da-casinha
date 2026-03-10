@@ -2,55 +2,69 @@
 <html>
 
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Bar da Casinha</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <h1>Bar da Casinha</h1>
 
-<input id="pesquisa" placeholder="Pesquisar ingredientes" onkeyup="filtrar()">
+<input id="pesquisa" placeholder="Pesquisar ingrediente" onkeyup="filtrar()">
 
 <div id="lista"></div>
 
 <script>
 
-let drinks = []
+let drinks=[]
 
 fetch("drinks.json")
-.then(res => res.json())
+.then(res=>res.json())
 .then(data=>{
-drinks = data
+drinks=data
 carregar()
 })
 
 function carregar(){
 
-let lista = document.getElementById("lista")
+let lista=document.getElementById("lista")
+
 lista.innerHTML=""
 
-drinks.forEach(drink=>{
+drinks.forEach((drink,i)=>{
 
 let ingredientesHTML=""
 
-drink.ingredientes.forEach(i=>{
-ingredientesHTML += "<li>"+i+"</li>"
+drink.ingredientes.forEach(ing=>{
+ingredientesHTML+="<li>"+ing+"</li>"
 })
 
-lista.innerHTML += `
+lista.innerHTML+=`
 
 <div class="drink">
 
 <h2>${drink.nome}</h2>
 
+<button onclick="toggle(${i})">Ver receita</button>
+
+<div class="receita" id="r${i}">
+
 <p><b>Ingredientes</b></p>
 <ul>${ingredientesHTML}</ul>
 
-<p><b>Modo de preparo</b>: ${drink.modo}</p>
-<p><b>Copo ou taça</b>: ${drink.copo}</p>
-<p><b>Guarnição</b>: ${drink.guarnicao}</p>
+<p><b>Modo de preparo</b><br>${drink.modo}</p>
+
+<p><b>Copo ou taça</b><br>${drink.copo}</p>
+
+<p><b>Guarnição</b><br>${drink.guarnicao}</p>
+
+</div>
 
 </div>
 
@@ -60,18 +74,29 @@ lista.innerHTML += `
 
 }
 
+function toggle(i){
+
+let r=document.getElementById("r"+i)
+
+if(r.style.display=="block")
+r.style.display="none"
+else
+r.style.display="block"
+
+}
+
 function filtrar(){
 
-let termo = document.getElementById("pesquisa").value.toLowerCase()
+let termo=document.getElementById("pesquisa").value.toLowerCase()
 
-let drinksHTML = document.getElementsByClassName("drink")
+let cards=document.getElementsByClassName("drink")
 
-for(let i=0;i<drinksHTML.length;i++){
+for(let i=0;i<cards.length;i++){
 
-let texto = drinksHTML[i].innerText.toLowerCase()
+let texto=cards[i].innerText.toLowerCase()
 
-drinksHTML[i].style.display =
-texto.includes(termo) ? "block" : "none"
+cards[i].style.display=
+texto.includes(termo)?"block":"none"
 
 }
 
