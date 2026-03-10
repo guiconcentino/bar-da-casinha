@@ -1,26 +1,66 @@
 body{
-font-family:Arial;
-background:#111;
+font-family: Arial, Helvetica, sans-serif;
+background:#0f0f0f;
 color:white;
+margin:0;
+padding:0;
 text-align:center;
 }
 
-.drink{
-background:#222;
-padding:15px;
-margin:10px;
-border-radius:10px;
-width:500px;
-margin-left:auto;
-margin-right:auto;
+h1{
+color:#f5b041;
+font-size:40px;
+margin-top:30px;
 }
 
 input{
-padding:8px;
-margin:10px;
-width:300px;
+width:320px;
+padding:10px;
+border-radius:20px;
+border:none;
+margin:20px;
+font-size:16px;
 }
 
-h1{
-color:#ffb347;
+#lista{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+padding:20px;
+}
+
+.drink{
+background:#1c1c1c;
+border-radius:12px;
+padding:20px;
+width:300px;
+box-shadow:0 0 10px rgba(0,0,0,0.5);
+transition:0.2s;
+}
+
+.drink:hover{
+transform:scale(1.03);
+}
+
+.drink h2{
+color:#f5b041;
+margin-top:0;
+}
+
+.drink ul{
+text-align:left;
+}
+
+.drink p{
+text-align:left;
+}
+
+button{
+background:#f5b041;
+border:none;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+margin-top:10px;
 }
