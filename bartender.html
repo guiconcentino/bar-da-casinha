@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Bartender - Bar da Casinha</title>
+</head>
+
+<body>
+
+<h1>Bartender</h1>
+
+Nome
+<input id="nome">
+
+Ingredientes (separados por vírgula)
+<textarea id="ingredientes"></textarea>
+
+Modo
+<input id="modo">
+
+Copo ou Taça
+<input id="copo">
+
+Guarnição
+<input id="guarnicao">
+
+<button onclick="adicionar()">Adicionar</button>
+
+<button onclick="exportar()">Exportar JSON</button>
+
+<script>
+
+let drinks=[]
+
+function adicionar(){
+
+let nome = document.getElementById("nome").value
+
+let ingredientes =
+document.getElementById("ingredientes").value.split(",")
+
+let modo = document.getElementById("modo").value
+let copo = document.getElementById("copo").value
+let guarnicao = document.getElementById("guarnicao").value
+
+drinks.push({
+
+nome:nome,
+ingredientes:ingredientes,
+modo:modo,
+copo:copo,
+guarnicao:guarnicao
+
+})
+
+}
+
+function exportar(){
+
+let data = JSON.stringify(drinks,null,2)
+
+let blob = new Blob([data], {type:"application/json"})
+
+let a = document.createElement("a")
+
+a.href = URL.createObjectURL(blob)
+
+a.download="drinks.json"
+
+a.click()
+
+}
+
+</script>
+
+</body>
+
+</html>

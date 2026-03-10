@@ -1,0 +1,25 @@
+[
+  {
+    "nome": "Negroni",
+    "ingredientes": [
+      "30 ml gin",
+      "30 ml campari",
+      "30 ml vermute rosso"
+    ],
+    "modo": "Mexido",
+    "copo": "Copo Old Fashioned com gelo",
+    "guarnicao": "Casca de laranja"
+  },
+  {
+    "nome": "Mojito",
+    "ingredientes": [
+      "50 ml rum branco",
+      "½ limão",
+      "2 colheres de chá de açúcar",
+      "8 folhas de hortelã"
+    ],
+    "modo": "Montado",
+    "copo": "Copo Highball com gelo",
+    "guarnicao": "Ramo de hortelã"
+  }
+]

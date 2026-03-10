@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Bar da Casinha</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Bar da Casinha</h1>
+
+<input id="pesquisa" placeholder="Pesquisar ingredientes" onkeyup="filtrar()">
+
+<div id="lista"></div>
+
+<script>
+
+let drinks = []
+
+fetch("drinks.json")
+.then(res => res.json())
+.then(data=>{
+drinks = data
+carregar()
+})
+
+function carregar(){
+
+let lista = document.getElementById("lista")
+lista.innerHTML=""
+
+drinks.forEach(drink=>{
+
+let ingredientesHTML=""
+
+drink.ingredientes.forEach(i=>{
+ingredientesHTML += "<li>"+i+"</li>"
+})
+
+lista.innerHTML += `
+
+<div class="drink">
+
+<h2>${drink.nome}</h2>
+
+<p><b>Ingredientes</b></p>
+<ul>${ingredientesHTML}</ul>
+
+<p><b>Modo de preparo</b>: ${drink.modo}</p>
+<p><b>Copo ou taça</b>: ${drink.copo}</p>
+<p><b>Guarnição</b>: ${drink.guarnicao}</p>
+
+</div>
+
+`
+
+})
+
+}
+
+function filtrar(){
+
+let termo = document.getElementById("pesquisa").value.toLowerCase()
+
+let drinksHTML = document.getElementsByClassName("drink")
+
+for(let i=0;i<drinksHTML.length;i++){
+
+let texto = drinksHTML[i].innerText.toLowerCase()
+
+drinksHTML[i].style.display =
+texto.includes(termo) ? "block" : "none"
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
